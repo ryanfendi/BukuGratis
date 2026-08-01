@@ -1,57 +1,28 @@
 import express from "express";
+
 import multer from "multer";
+
+import { uploadBook } from "../controllers/uploadController.js";
 
 import { adminAuth } from "../middleware/adminAuth.js";
 
-const router = express.Router();
+const router=express.Router();
 
-const upload = multer({
+const upload=multer({
 
-    storage: multer.memoryStorage(),
-
-    limits: {
-
-        fileSize: 100 * 1024 * 1024
-
-    }
+storage:multer.memoryStorage()
 
 });
 
 router.post(
 
-    "/book",
+"/book",
 
-    adminAuth,
+adminAuth,
 
-    upload.single("pdf"),
+upload.single("pdf"),
 
-    async (req, res) => {
-
-        if (!req.file) {
-
-            return res.status(400).json({
-
-                success: false,
-
-                message: "PDF belum dipilih"
-
-            });
-
-        }
-
-        res.json({
-
-            success: true,
-
-            message: "PDF diterima server",
-
-            file: req.file.originalname,
-
-            size: req.file.size
-
-        });
-
-    }
+uploadBook
 
 );
 
