@@ -1,28 +1,17 @@
 import express from "express";
 
+import {
+
+getBooks,
+
+getBook
+
+} from "../controllers/booksController.js";
+
 const router = express.Router();
 
-// Semua buku
-router.get("/", async (req, res) => {
+router.get("/", getBooks);
 
-    res.json({
-        success: true,
-        books: []
-    });
-
-});
-
-// Detail buku
-router.get("/:id", async (req, res) => {
-
-    res.json({
-
-        success: true,
-
-        id: req.params.id
-
-    });
-
-});
+router.get("/:id", getBook);
 
 export default router;
