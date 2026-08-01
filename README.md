@@ -1,1 +1,3 @@
-# BukuGratis
+# BukuGratis.com
+
+Perpustakaan Digital Gratis
