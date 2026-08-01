@@ -52,6 +52,24 @@ export async function uploadBook(req,res){
             "temp/pages"
 
         );
+        
+        const webpPages =
+await convertPagesToWebp(
+    "temp/pages",
+    "temp/webp"
+);
+res.json({
+
+success:true,
+
+pages:webpPages.length,
+
+status:"PDF berhasil diproses"
+
+});
+
+        
+removeFolder("temp/pages");
 
         res.json({
 
@@ -76,3 +94,5 @@ export async function uploadBook(req,res){
     }
 
 }
+import { convertPagesToWebp } from "../services/imageEngine.js";
+import { removeFolder } from "../services/cleanup.js";
